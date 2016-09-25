@@ -15,14 +15,19 @@ alexa:
   refresh_token:
 
 sphinx:
-  trigger_phrase: alexa
+  trigger_phrase: "alexa"
 
-raspberrypi:
-  # GPIO Pin with button connected
-  button: 18
-  # GPIO Pin for the playback/activity light
-  plb_light: &plb_light 24
-  # GPIO Pin for the recording light
-  rec_light: &rec_light 25
-  # GPIO Pins with LED's connected
-  lights: [*plb_light, *rec_light]
+platform:
+  device: "raspberrypi"
+
+platforms:
+  raspberrypi:
+    # GPIO Pin with button connected
+    button: 18
+    # GPIO Pin for the playback/activity light
+    plb_light: 24
+    # GPIO Pin for the recording light
+    rec_light: 25
+
+  desktop:
+    min_seconds_to_record: 3
