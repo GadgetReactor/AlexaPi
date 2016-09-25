@@ -551,11 +551,6 @@ def start():
 		decoder.start_utt()
 
 
-def cleanup(signal, frame):
-	shutil.rmtree(tmp_path)
-	sys.exit(0)
-
-
 def setup():
 	for sig in (signal.SIGABRT, signal.SIGILL, signal.SIGINT, signal.SIGSEGV, signal.SIGTERM):
 		signal.signal(sig, cleanup)
