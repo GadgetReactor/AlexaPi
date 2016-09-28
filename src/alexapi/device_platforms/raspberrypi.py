@@ -78,4 +78,7 @@ class RaspberrypiPlatform(BasePlatform):
 		return self.button_pressed
 
 	def cleanup(self):
-		pass
+		GPIO.remove_event_detect(self.__pconfig['button'])
+
+		GPIO.output(self.__pconfig['rec_light'], GPIO.LOW)
+		GPIO.output(self.__pconfig['plb_light'], GPIO.LOW)
