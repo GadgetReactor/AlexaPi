@@ -29,5 +29,19 @@ platforms:
     # GPIO Pin for the recording light
     rec_light: 25
 
+    long_press:
+      # system command to run after pressing the button for _duration_ number of seconds
+      # empty to disable
+      command: ""
+
+      # duration in seconds
+      duration: 10
+
+      # CURRENTLY DISABLED
+      # optional audio file to play before executing the command
+      # you might wanna use full path to make sure AlexaPi finds it
+      # you can use {resources_path} for the path to the AlexaPi "resources" directory
+      audio_file: ""
+
   desktop:
     min_seconds_to_record: 3

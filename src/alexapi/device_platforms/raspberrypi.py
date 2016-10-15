@@ -1,4 +1,6 @@
 import time 
+import os
+
 import RPi.GPIO as GPIO
 
 from baseplatform import BasePlatform
@@ -13,6 +15,14 @@ class RaspberrypiPlatform(BasePlatform):
 		self.__config = config
 		self.__pconfig = config['platforms']['raspberrypi']
 		self.__pconfig['lights'] = [self.__pconfig['rec_light'], self.__pconfig['plb_light']]
+
+		self.long_press_setup = False
+		if ('long_press' in self.__pconfig
+				and 'command' in self.__pconfig['long_press']
+				and len(self.__pconfig['long_press']['command']) > 0
+				and 'duration' in self.__pconfig['long_press']):
+
+			self.long_press_setup = True
 
 		self.button_pressed = False
 
@@ -49,7 +59,7 @@ class RaspberrypiPlatform(BasePlatform):
 	def indicate_playback(self, state=True):
 		GPIO.output(self.__pconfig['plb_light'], GPIO.HIGH if state == True else GPIO.LOW)
 
-	def detect_button(self, channel):
+	def detect_button(self):
 		buttonPress = time.time()
 		self.button_pressed = True
 
@@ -58,11 +68,17 @@ class RaspberrypiPlatform(BasePlatform):
 		time.sleep(.5)  # time for the button input to settle down
 		while (GPIO.input(self.__pconfig['button']) == 0):
 			time.sleep(.1)
-			# if time.time() - buttonPress > 10:  # pressing button for 10 seconds triggers a system halt
-			# 	play_audio(resources_path + 'alexahalt.mp3')
-			# 	if self.__config['debug']:
-			# 		print("{} -- 10 second putton press.  Shutting down. -- {}".format(bcolors.WARNING, bcolors.ENDC))
-			# 	os.system("halt")
+
+			if (self.long_press_setup) and (time.time() - buttonPress > self.__pconfig['long_press']['duration']):
+
+				if ('audio_file' in self.__pconfig['long_press']) and (len(self.__pconfig['long_press']['audio_file']) > 0):
+					pass
+					# play_audio(self.__pconfig['long_press']['audio_file'].replace('{resources_path}', resources_path))
+
+				if self.__config['debug']:
+					print(("{} -- " + str(self.__pconfig['long_press']['duration']) + " second button press detected. Running specified command. -- {}").format(bcolors.WARNING, bcolors.ENDC))
+
+				os.system(self.__pconfig['long_press']['command'])
 
 		if self.__config['debug']: print("{}Recording Finished.{}".format(bcolors.OKBLUE, bcolors.ENDC))
 
