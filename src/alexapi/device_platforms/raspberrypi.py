@@ -24,6 +24,8 @@ class RaspberrypiPlatform(BasePlatform):
 
 			self.long_press_setup = True
 
+		self.should_confirm_trigger = self.__pconfig['should_confirm_trigger']
+
 		self.button_pressed = False
 
 	def setup(self):

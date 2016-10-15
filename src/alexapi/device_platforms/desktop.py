@@ -13,6 +13,8 @@ class DesktopPlatform(BasePlatform):
 		self.__config = config
 		self.__pconfig = config['platforms']['desktop']
 
+		self.should_confirm_trigger = self.__pconfig['should_confirm_trigger']
+
 		self.trigger_thread = None
 
 		self.started = 0
@@ -43,6 +45,7 @@ class DesktopPlatform(BasePlatform):
 
 	def cleanup(self):
 		self.trigger_thread.stop()
+
 
 class DesktopPlatformTriggerThread(threading.Thread):
 	def __init__(self, platform):

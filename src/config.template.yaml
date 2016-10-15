@@ -29,6 +29,10 @@ platforms:
     # GPIO Pin for the recording light
     rec_light: 25
 
+    # whether you want to hear Alexa's "yes" after you press a button
+    # "true" or "false"
+    should_confirm_trigger: false
+
     long_press:
       # system command to run after pressing the button for _duration_ number of seconds
       # empty to disable
@@ -44,4 +48,8 @@ platforms:
       audio_file: ""
 
   desktop:
+    # whether you want to hear Alexa's "yes" after you press a button
+    # "true" or "false"
+    should_confirm_trigger: true
+
     min_seconds_to_record: 3

@@ -504,25 +504,33 @@ def start():
 		audio = ""
 		start = time.time()
 
-                while record_audio == False:
+		while not record_audio:
 
 			time.sleep(.1)
 
+			triggered = False
 			# Process microphone audio via PocketSphinx, listening for trigger word
-			while decoder.hyp() == None and platform.should_record() == False:
+			while not triggered:
 				# Read from microphone
 				l,buf = inp.read()
 				# Detect if keyword/trigger word was said
 				decoder.process_raw(buf, False, False)
 
-			# if trigger word was said
-			if decoder.hyp() != None:
+				triggered_by_platform = platform.should_record()
+				triggered_by_voice = decoder.hyp() is not None
+				triggered = triggered_by_platform or triggered_by_voice
+
+			if audioplaying:
+				p.stop()
+
+			record_audio = True
+
+			if triggered_by_voice:
 				start = time.time()
 
-			if (decoder.hyp() != None) or (platform.should_record()):
-				if audioplaying: p.stop()
-				record_audio = True
-				play_audio(resources_path+'alexayes.mp3', 0)
+			if triggered_by_platform:
+				if platform.should_confirm_trigger:
+					play_audio(resources_path + 'alexayes.mp3', 0)
 
 		# do the following things if either the button has been pressed or the trigger word has been said
 		if debug: print ("detected the edge, setting up audio")
