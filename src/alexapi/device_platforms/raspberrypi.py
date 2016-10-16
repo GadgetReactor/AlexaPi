@@ -4,7 +4,7 @@ import os
 import RPi.GPIO as GPIO
 
 from baseplatform import BasePlatform
-from alexapi.bcolors import bcolors
+import alexapi.bcolors as bcolors
 
 
 class RaspberrypiPlatform(BasePlatform):

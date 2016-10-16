@@ -32,7 +32,7 @@ from pocketsphinx.pocketsphinx import *
 from sphinxbase.sphinxbase import *
 
 import alexapi.config
-from alexapi.bcolors import bcolors
+import alexapi.bcolors as bcolors
 
 with open(alexapi.config.filename, 'r') as stream:
 	config = yaml.load(stream)
