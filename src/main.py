@@ -101,7 +101,6 @@ streamurl = ""
 streamid = ""
 position = 0
 audioplaying = False
-start = time.time()
 tunein_parser = tunein.TuneIn(5000)
 vad = webrtcvad.Vad(2)
 currVolume = 100
@@ -502,7 +501,6 @@ def start():
 		inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
 		inp.setperiodsize(1024)
 		audio = ""
-		start = time.time()
 
 		while not record_audio:
 
@@ -525,12 +523,8 @@ def start():
 
 			record_audio = True
 
-			if triggered_by_voice:
-				start = time.time()
-
-			if triggered_by_platform:
-				if platform.should_confirm_trigger:
-					play_audio(resources_path + 'alexayes.mp3', 0)
+			if triggered_by_voice or (triggered_by_platform and platform.should_confirm_trigger):
+				play_audio(resources_path + 'alexayes.mp3', 0)
 
 		# do the following things if either the button has been pressed or the trigger word has been said
 		if debug: print ("detected the edge, setting up audio")
