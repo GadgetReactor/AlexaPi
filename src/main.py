@@ -95,7 +95,7 @@ decoder = Decoder(ps_config)
 decoder.start_utt()
 
 #Variables
-p = ""
+p = None
 nav_token = ""
 streamurl = ""
 streamid = ""
@@ -488,7 +488,7 @@ def silence_listener(throwaway_frames):
 		inp.close()
 		
 
-def start():
+def loop():
 	global audioplaying, p, vad
 
 	while True:
@@ -580,4 +580,4 @@ def cleanup(signal, frame):
 
 if __name__ == "__main__":
 	setup()
-	start()
+	loop()
