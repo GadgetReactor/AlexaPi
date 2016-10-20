@@ -61,7 +61,7 @@ class OrangepiPlatform(BasePlatform):
 	def indicate_playback(self, state=True):
 		GPIO.output(self.__pconfig['plb_light'], GPIO.HIGH if state == True else GPIO.LOW)
 
-	def detect_button(self, channel):
+	def detect_button(self):
 		buttonPress = time.time()
 		self.button_pressed = True
 
@@ -97,8 +97,8 @@ class OrangepiPlatform(BasePlatform):
 		while True:
 			if(GPIO.input(self.__pconfig['button'])==0):
 				if self.__config['debug']: print ("button detected")
-				self.detect_button("pressed")
-			time.sleep(1)
+				self.detect_button()
+			time.sleep(.1)
 
 	def should_record(self):
 		return self.button_pressed
