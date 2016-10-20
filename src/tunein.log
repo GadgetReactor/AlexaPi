@@ -1,0 +1,17 @@
+INFO:urllib3.connectionpool:Starting new HTTPS connection (1): api.amazon.com
+DEBUG:urllib3.connectionpool:"GET /auth/o2/token HTTP/1.1" 404 29
+INFO:urllib3.connectionpool:Starting new HTTPS connection (1): access-alexa-na.amazon.com
+DEBUG:urllib3.connectionpool:"POST /v1/avs/speechrecognizer/recognize HTTP/1.1" 200 None
+INFO:urllib3.connectionpool:Starting new HTTPS connection (1): access-alexa-na.amazon.com
+DEBUG:urllib3.connectionpool:"POST /v1/avs/speechrecognizer/recognize HTTP/1.1" 204 0
+INFO:urllib3.connectionpool:Starting new HTTPS connection (1): access-alexa-na.amazon.com
+INFO:urllib3.connectionpool:Starting new HTTPS connection (1): api.amazon.com
+DEBUG:urllib3.connectionpool:"GET /auth/o2/token HTTP/1.1" 404 29
+INFO:urllib3.connectionpool:Starting new HTTPS connection (1): access-alexa-na.amazon.com
+DEBUG:urllib3.connectionpool:"POST /v1/avs/speechrecognizer/recognize HTTP/1.1" 200 None
+INFO:urllib3.connectionpool:Starting new HTTPS connection (1): api.amazon.com
+DEBUG:urllib3.connectionpool:"GET /auth/o2/token HTTP/1.1" 404 29
+INFO:urllib3.connectionpool:Starting new HTTPS connection (1): api.amazon.com
+DEBUG:urllib3.connectionpool:"GET /auth/o2/token HTTP/1.1" 404 29
+INFO:urllib3.connectionpool:Starting new HTTPS connection (1): access-alexa-na.amazon.com
+DEBUG:urllib3.connectionpool:"POST /v1/avs/speechrecognizer/recognize HTTP/1.1" 200 None
