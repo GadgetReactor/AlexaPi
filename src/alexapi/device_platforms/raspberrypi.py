@@ -61,7 +61,7 @@ class RaspberrypiPlatform(BasePlatform):
 	def indicate_playback(self, state=True):
 		GPIO.output(self.__pconfig['plb_light'], GPIO.HIGH if state == True else GPIO.LOW)
 
-	def detect_button(self):
+	def detect_button(self, channel):
 		buttonPress = time.time()
 		self.button_pressed = True
 
