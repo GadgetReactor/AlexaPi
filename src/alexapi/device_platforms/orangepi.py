@@ -95,7 +95,7 @@ class OrangepiPlatform(BasePlatform):
 
 	def wait_for_button(self):
 		while True:
-			if(GPIO.input(self.__pconfig['button']) == 0):
+			if (GPIO.input(self.__pconfig['button']) == 0):
 				if self.__config['debug']: print ("button detected")
 				self.detect_button()
 			time.sleep(.1)
