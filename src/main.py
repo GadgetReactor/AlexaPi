@@ -19,7 +19,7 @@ import threading
 import cgi 
 import email
 import optparse
-#import getch
+import getch
 import sys
 import fileinput
 import datetime
