@@ -104,8 +104,5 @@ class OrangepiPlatform(BasePlatform):
 		return self.button_pressed
 
 	def cleanup(self):
-
 		GPIO.output(self.__pconfig['rec_light'], GPIO.LOW)
 		GPIO.output(self.__pconfig['plb_light'], GPIO.LOW)
-
-
